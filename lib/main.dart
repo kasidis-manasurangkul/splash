@@ -16,7 +16,6 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
   late double width;
   late double height;
-  late BorderRadius borderRadius = BorderRadius.circular(0);
   double opc = 1.0;
   double topPos = 0.0;
 
@@ -30,7 +29,6 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
         setState(() {
           width = MediaQuery.of(context).size.width * 0.14;
           height = MediaQuery.of(context).size.width * 0.14;
-          borderRadius = BorderRadius.circular(50);
         });
       });
       Future.delayed(const Duration(seconds: 3)).then((value) {
