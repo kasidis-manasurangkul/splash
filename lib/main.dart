@@ -31,8 +31,8 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
       circleTopPos = null;
       Future.delayed(const Duration(milliseconds: 500)).then((value) {
         setState(() {
-          width = MediaQuery.of(context).size.width * 0.14;
-          height = MediaQuery.of(context).size.width * 0.14;
+          width = MediaQuery.of(context).size.width * 0.135;
+          height = MediaQuery.of(context).size.width * 0.135;
         });
       });
       Future.delayed(const Duration(milliseconds: 1500)).then((value) {
@@ -43,7 +43,7 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
       Future.delayed(const Duration(milliseconds: 2500)).then((value) {
         setState(() {
           circleTopPos = MediaQuery.of(context).size.height * 0.5 -
-              MediaQuery.of(context).size.width * 0.07;
+              MediaQuery.of(context).size.width * 0.135 / 2;
         });
       });
       Future.delayed(const Duration(milliseconds: 3500)).then((value) {
@@ -105,7 +105,7 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
                   duration: const Duration(seconds: 2),
                   top: circleTopPos,
                   left: (scrWidth / 2 - width / 2) +
-                      MediaQuery.of(context).size.width * 0.03,
+                      MediaQuery.of(context).size.width * 0.025,
                   width: width,
                   height: height,
                   child: Container(
