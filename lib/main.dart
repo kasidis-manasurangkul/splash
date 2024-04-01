@@ -28,8 +28,7 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       titleTopPos = (MediaQuery.of(context).size.height * 0.5) -
           (MediaQuery.of(context).size.width * 0.15 / 2);
-      circleTopPos = (MediaQuery.of(context).size.height * 0.5) -
-          (MediaQuery.of(context).size.width * 0.14 / 2);
+      circleTopPos = null;
       Future.delayed(const Duration(seconds: 2)).then((value) {
         setState(() {
           width = MediaQuery.of(context).size.width * 0.14;
@@ -39,6 +38,12 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
       Future.delayed(const Duration(seconds: 3)).then((value) {
         setState(() {
           opc = 0.0;
+        });
+      });
+      Future.delayed(const Duration(seconds: 5)).then((value) {
+        setState(() {
+          circleTopPos = MediaQuery.of(context).size.height * 0.5 -
+              MediaQuery.of(context).size.width * 0.07;
         });
       });
       Future.delayed(const Duration(seconds: 6)).then((value) {
@@ -99,36 +104,29 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
                 AnimatedPositioned(
                   duration: const Duration(seconds: 2),
                   top: circleTopPos,
-                  width: width,
-                  height: height,
                   left: (scrWidth / 2 - width / 2) +
                       MediaQuery.of(context).size.width * 0.03,
-                  child: AnimatedPositioned(
-                    duration: const Duration(seconds: 2),
-                    left: (scrWidth / 2 - width / 2) +
-                        MediaQuery.of(context).size.width * 0.03,
-                    width: width,
-                    height: height,
-                    child: Container(
-                      width: scrWidth,
-                      height: scrHeight,
-                      decoration: const BoxDecoration(
-                        color: Color(0xFF4064FA),
-                        shape: BoxShape.circle,
-                      ),
-                      child: AnimatedOpacity(
-                        duration: const Duration(milliseconds: 1000),
-                        opacity: opc,
-                        child: Center(
-                            child: SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.7,
-                          height: MediaQuery.of(context).size.width * 0.15,
-                          child: const Image(
-                            fit: BoxFit.cover,
-                            image: AssetImage("assets/titlewhite.png"),
-                          ),
-                        )),
-                      ),
+                  width: width,
+                  height: height,
+                  child: Container(
+                    width: scrWidth,
+                    height: scrHeight,
+                    decoration: const BoxDecoration(
+                      color: Color(0xFF4064FA),
+                      shape: BoxShape.circle,
+                    ),
+                    child: AnimatedOpacity(
+                      duration: const Duration(milliseconds: 1000),
+                      opacity: opc,
+                      child: Center(
+                          child: SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.7,
+                        height: MediaQuery.of(context).size.width * 0.15,
+                        child: const Image(
+                          fit: BoxFit.cover,
+                          image: AssetImage("assets/titlewhite.png"),
+                        ),
+                      )),
                     ),
                   ),
                 ),
