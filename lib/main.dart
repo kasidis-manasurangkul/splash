@@ -29,24 +29,24 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
       titleTopPos = (MediaQuery.of(context).size.height * 0.5) -
           (MediaQuery.of(context).size.width * 0.15 / 2);
       circleTopPos = null;
-      Future.delayed(const Duration(seconds: 2)).then((value) {
+      Future.delayed(const Duration(milliseconds: 500)).then((value) {
         setState(() {
           width = MediaQuery.of(context).size.width * 0.14;
           height = MediaQuery.of(context).size.width * 0.14;
         });
       });
-      Future.delayed(const Duration(seconds: 3)).then((value) {
+      Future.delayed(const Duration(milliseconds: 1500)).then((value) {
         setState(() {
           opc = 0.0;
         });
       });
-      Future.delayed(const Duration(seconds: 5)).then((value) {
+      Future.delayed(const Duration(milliseconds: 2500)).then((value) {
         setState(() {
           circleTopPos = MediaQuery.of(context).size.height * 0.5 -
               MediaQuery.of(context).size.width * 0.07;
         });
       });
-      Future.delayed(const Duration(seconds: 6)).then((value) {
+      Future.delayed(const Duration(milliseconds: 3500)).then((value) {
         setState(() {
           titleTopPos = -MediaQuery.of(context).size.height;
           circleTopPos = -MediaQuery.of(context).size.height;
