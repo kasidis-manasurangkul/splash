@@ -17,7 +17,8 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
   late double width;
   late double height;
   double opc = 1.0;
-  double topPos = 0.0;
+  double? titleTopPos;
+  double? circleTopPos;
 
   @override
   void initState() {
@@ -25,6 +26,10 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
 
     // Initial size is set to full screen in didChangeDependencies
     WidgetsBinding.instance.addPostFrameCallback((_) {
+      titleTopPos = (MediaQuery.of(context).size.height * 0.5) -
+          (MediaQuery.of(context).size.width * 0.15 / 2);
+      circleTopPos = (MediaQuery.of(context).size.height * 0.5) -
+          (MediaQuery.of(context).size.width * 0.14 / 2);
       Future.delayed(const Duration(seconds: 2)).then((value) {
         setState(() {
           width = MediaQuery.of(context).size.width * 0.14;
@@ -34,6 +39,12 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
       Future.delayed(const Duration(seconds: 3)).then((value) {
         setState(() {
           opc = 0.0;
+        });
+      });
+      Future.delayed(const Duration(seconds: 6)).then((value) {
+        setState(() {
+          titleTopPos = -MediaQuery.of(context).size.height;
+          circleTopPos = -MediaQuery.of(context).size.height;
         });
       });
     });
@@ -64,67 +75,66 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: Stack(
-          children: [
-            Scaffold(
-              backgroundColor: Colors.transparent,
-              body: Center(
-                  child: SizedBox(
-                width: MediaQuery.of(context).size.width * 0.7,
-                height: MediaQuery.of(context).size.width * 0.15,
-                child: const Image(
-                  fit: BoxFit.cover,
-                  image: AssetImage("assets/titleblack.png"),
+        home: Scaffold(
+          backgroundColor: Colors.transparent,
+          body: SizedBox(
+            width: scrWidth,
+            height: scrHeight,
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                AnimatedPositioned(
+                  duration: const Duration(seconds: 2),
+                  top: titleTopPos,
+                  child: Center(
+                      child: SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.7,
+                    height: MediaQuery.of(context).size.width * 0.15,
+                    child: const Image(
+                      fit: BoxFit.cover,
+                      image: AssetImage("assets/titleblack.png"),
+                    ),
+                  )),
                 ),
-              )),
-            ),
-            Scaffold(
-              backgroundColor: Colors.transparent,
-              body: Stack(
-                children: [
-                  SizedBox(
-                    width: scrWidth,
-                    height: scrHeight,
-                    // color: Color(0xFF4064FA),
-                    child: Stack(
-                      alignment: Alignment.center,
-                      children: [
-                        AnimatedPositioned(
-                          duration: const Duration(seconds: 2),
-                          left: (scrWidth / 2 - width / 2) +
-                              MediaQuery.of(context).size.width * 0.03,
-                          width: width,
-                          height: height,
-                          child: Container(
-                            width: scrWidth,
-                            height: scrHeight,
-                            decoration: const BoxDecoration(
-                              color: Color(0xFF4064FA),
-                              shape: BoxShape.circle,
-                            ),
-                            child: AnimatedOpacity(
-                              duration: const Duration(milliseconds: 1000),
-                              opacity: opc,
-                              child: Center(
-                                  child: SizedBox(
-                                width: MediaQuery.of(context).size.width * 0.7,
-                                height:
-                                    MediaQuery.of(context).size.width * 0.15,
-                                child: const Image(
-                                  fit: BoxFit.cover,
-                                  image: AssetImage("assets/titlewhite.png"),
-                                ),
-                              )),
-                            ),
+                AnimatedPositioned(
+                  duration: const Duration(seconds: 2),
+                  top: circleTopPos,
+                  width: width,
+                  height: height,
+                  left: (scrWidth / 2 - width / 2) +
+                      MediaQuery.of(context).size.width * 0.03,
+                  child: AnimatedPositioned(
+                    duration: const Duration(seconds: 2),
+                    left: (scrWidth / 2 - width / 2) +
+                        MediaQuery.of(context).size.width * 0.03,
+                    width: width,
+                    height: height,
+                    child: Container(
+                      width: scrWidth,
+                      height: scrHeight,
+                      decoration: const BoxDecoration(
+                        color: Color(0xFF4064FA),
+                        shape: BoxShape.circle,
+                      ),
+                      child: AnimatedOpacity(
+                        duration: const Duration(milliseconds: 1000),
+                        opacity: opc,
+                        child: Center(
+                            child: SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.7,
+                          height: MediaQuery.of(context).size.width * 0.15,
+                          child: const Image(
+                            fit: BoxFit.cover,
+                            image: AssetImage("assets/titlewhite.png"),
                           ),
-                        ),
-                      ],
+                        )),
+                      ),
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-          ],
+          ),
         ));
   }
 }
