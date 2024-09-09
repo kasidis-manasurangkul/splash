@@ -1,16 +1,17 @@
-# splash
+# Tax OCR Splash Animation
 
-A new Flutter project.
+Welcome to the repository for the Tax OCR Splash Page, designed as an animated splash screen for a mobile application named Tax ORC. This project is built using Flutter and Dart.
 
-## Getting Started
+## System Requirements
 
-This project is a starting point for a Flutter application.
+- **Flutter**: Lattest
 
-A few resources to get you started if this is your first Flutter project:
+## Running the Application
+After configuration, you can start the application locally with:
+```bash
+flutter run
+```
+The application will be available at in your localhost.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Example
+![tax-orc-splash](https://github.com/user-attachments/assets/7071998c-15b6-4ddb-8e41-8e9146a0b6a5)
